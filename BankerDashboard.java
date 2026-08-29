@@ -1,9 +1,13 @@
+package banker;
+
+//we import the utilities for java swing
 import javax.swing.*;
 import java.awt.*;
 
 
 //this will be the calss that has the gui attributes or the dashboard window.
-public class BankerDashboard {
+@SuppressWarnings("serial")
+public class BankerDashboard extends JFrame{
 	//the frame and the label for welcome.
     JFrame dashboard;
     JLabel welcomeLabel;
@@ -24,12 +28,13 @@ public class BankerDashboard {
    
     
 
-    public BankerDashboard() {
+    @SuppressWarnings("unused")
+	public BankerDashboard() {
     	//create the frame.
         dashboard = new JFrame("Welcome Banker!");
         
         dashboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        dashboard.setSize(1000,500);
+        dashboard.setSize(400,250);
         dashboard.setLocationRelativeTo(null);//this will set the window towards the middle or the center of the screen.
         
         
@@ -45,9 +50,12 @@ public class BankerDashboard {
         //row1
         createUser = new JLabel("Create User");
         createUserButton = new JButton("Enter");
+        createUserButton.setPreferredSize(new Dimension(80, 25));
         //row 2
         deleteUser = new JLabel("Delete User");
         deleteUserButton = new JButton("Enter");
+        deleteUserButton.setPreferredSize(new Dimension(80, 25));
+
         
         //now add the componenets into the panel.
         centerPanel.add(createUser);
@@ -65,6 +73,19 @@ public class BankerDashboard {
         logoutPanel.add(logoutButton);
         dashboard.add(logoutPanel,BorderLayout.SOUTH);
         
+        //creating new user button action opens the create user window.
+        createUserButton.addActionListener(e -> {
+        	dashboard.dispose();
+            new CreateUser();   // Open CreateUser window when clicked
+        });
+        
+        //delete user button will open the window for deleting user or navigate it towards it.
+        deleteUserButton.addActionListener(e -> {
+        	dashboard.dispose();
+        	new DeleteUser();
+        });
+        
+        //dashboard.pack();
         //now make it visibl.
         dashboard.setVisible(true);
         
@@ -72,4 +93,4 @@ public class BankerDashboard {
         
         
     }
-}
+

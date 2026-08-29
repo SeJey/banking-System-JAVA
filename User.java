@@ -1,46 +1,34 @@
 public class User {
     private String username;
-    private Account spending;
-    private Account savings;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String accountNumber;
+    private double checkingBalance;
+    private double savingsBalance;
+    private String email;
 
-    public User(String username) {
+    public User(String username, String password, String firstName, String lastName, String accountNumber, double checkingBalance, double savingsBalance, String email) {
         this.username = username;
-        this.spending = new Account("Spending");
-        this.savings = new Account("Savings");
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountNumber = accountNumber;
+        this.checkingBalance = checkingBalance;
+        this.savingsBalance = savingsBalance;
+        this.email = email;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public String getAccountNumber() { return accountNumber; }
+    public String getEmail() { return email; }
 
-    public Account getSpending() {
-        return spending;
-    }
+    public double getCheckingBalance() { return checkingBalance; }
+    public void setCheckingBalance(double balance) { this.checkingBalance = balance; }
 
-    public Account getSavings() {
-        return savings;
-    }
-
-    public boolean transferBetweenOwn(String from, String to, double amount) {
-        Account source = from.equalsIgnoreCase("Spending") ? spending : savings;
-        Account target = to.equalsIgnoreCase("Spending") ? spending : savings;
-
-        if (source != target && source.withdraw(amount)) {
-            target.deposit(amount);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean transferTo(User targetUser, String toType, double amount) {
-        if (spending.withdraw(amount)) {
-            if (toType.equalsIgnoreCase("Spending")) {
-                targetUser.getSpending().deposit(amount);
-            } else {
-                targetUser.getSavings().deposit(amount);
-            }
-            return true;
-        }
-        return false;
-    }
+    public double getSavingsBalance() { return savingsBalance; }
+    public void setSavingsBalance(double balance) { this.savingsBalance = balance; }
 }

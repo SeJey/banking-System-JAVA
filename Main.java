@@ -1,46 +1,44 @@
-import javax.swing.*;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package finalproject;
 
+/**
+ *
+ * @author pumiphatsukkho
+ */
 public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        UserManager manager = new UserManager();
-        manager.loadFromCSV("users.csv");
-
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            manager.saveToCSV("users.csv");
-        }));
-
-        String[] options = {"Admin", "User"};
-        String choice = (String) JOptionPane.showInputDialog(null, "Login as:", "Login",
-                JOptionPane.PLAIN_MESSAGE, null, options, "User");
-
-        if ("Admin".equals(choice)) {
-            String adminPass = JOptionPane.showInputDialog("Admin password:");
-            if (!"admin".equals(adminPass)) {
-                JOptionPane.showMessageDialog(null, "Incorrect password.");
-                return;
-            }
-
-            while (true) {
-                String[] adminOps = {"Add User", "Remove User", "Exit"};
-                String op = (String) JOptionPane.showInputDialog(null, "Admin Menu", "Admin",
-                        JOptionPane.PLAIN_MESSAGE, null, adminOps, "Add User");
-
-                if ("Add User".equals(op)) {
-                    String name = JOptionPane.showInputDialog("New username:");
-                    manager.addUser(name);
-                } else if ("Remove User".equals(op)) {
-                    String name = JOptionPane.showInputDialog("Username to remove:");
-                    manager.removeUser(name);
-                } else break;
-            }
-        } else {
-            String uname = JOptionPane.showInputDialog("Enter username:");
-            User user = manager.getUser(uname);
-            if (user == null) {
-                JOptionPane.showMessageDialog(null, "User not found.");
-                return;
-            }
-            new UserDashboard(user, manager);
-        }
-    }
+        // TODO code application logic here
+        Welcome welcomeFrame = new Welcome();
+        welcomeFrame.setVisible(true);
+        welcomeFrame.pack();
+        welcomeFrame.setLocationRelativeTo(null);
+        /*
+        BankerLogin LoginFrame1 = new BankerLogin();
+        LoginFrame1.setVisible(false);
+        LoginFrame1.pack();
+        LoginFrame1.setLocationRelativeTo(null);
+        
+        UserLogin LoginFrame2 = new UserLogin();
+        LoginFrame2.setVisible(false);
+        LoginFrame2.pack();
+        LoginFrame2.setLocationRelativeTo(null);
+        
+        ForgotPassword verifyFrame = new ForgotPassword();
+        verifyFrame.setVisible(false);
+        verifyFrame.pack();
+        verifyFrame.setLocationRelativeTo(null);
+        
+        ChangePassword changeFrame = new ChangePassword();
+        changeFrame.setVisible(false);
+        changeFrame.pack();
+        changeFrame.setLocationRelativeTo(null);
+        */
+    }  
 }
